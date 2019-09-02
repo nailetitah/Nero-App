@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row justify-content-center">
+	<div class="text-center my-5">
+		<h1><%= @training.title %></h1>
+		<h6><%= @training.start_date.strftime("%d.%m.%Y") %> | <%= @training.location %> | <%= @training.price %> €</h6>
+		<p><%= @training.description %></p>
+		<hr>
+		<div class="my-4">
+		<p>Cet événement termine le <%= @training.end_date.strftime("%d.%m.%Y à %Hh%M") %></p>
+		</div>
+		<div class="my-4">
+		<p><%= link_to "Voir tous les événements", root_path %></p>
+		</div>
+	</div>
+  </div>
+</div>

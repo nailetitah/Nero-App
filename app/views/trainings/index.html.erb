@@ -1,0 +1,44 @@
+<div class="container pt-4">
+  <div class="text-center mt-4">
+    <h1>Prochaines sessions</h1>
+    <h5>Inscrivez-vous en 3 clics !</h5>
+    <!-- Ajout de la fonction if admin pour add training -->
+  </div>
+  <div class="d-flex justify-content-center"></div>
+
+  <div class="row mt-4 mb-4"><% @trainings.each do |training| %>
+    <div class="col-sm-4 my-4 px-4"><%= link_to training_path(training.id), :class => 'text-dark text-decoration-none', :action => 'go' do %>
+      <div class="card text-center shadow">
+        <div class="card-header"><%= training.start_date.strftime("%d " "%b") %>
+        </div>
+        <div class="card-body">
+
+          <ul class="py-0">
+            <li class="li-center">
+              <i class="fas fa-chevron-right icon-margin"></i>Formation complète de 14h
+                  
+            </li>
+            <li class="li-center">
+              <i class="fas fa-chevron-right icon-margin"></i>Ressources fournies
+                  
+            </li>
+            <li class="li-center">
+              <i class="fas fa-chevron-right icon-margin"></i>Exercices sur-mesure
+                  
+            </li>
+            <li class="li-center">
+              <i class="fas fa-chevron-right icon-margin"></i>8 participants par session
+                  
+            </li>
+          </ul>
+        </div>
+        <div class="card-footer text-muted">Paris
+        </div>
+        <a href="#" class="card-btn btn btn-block btn-primary rounded-bottom">
+               Je m'inscris
+              </a>
+      </div><% end %>
+    </div><% end %>
+
+  </div>
+</div>

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BtNero</title>
+    <title>training Sprite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'https://kit.fontawesome.com/b6feedaf85.js' %>
+    <%= render 'layouts/css_libs' %>
   </head>
 
-  <body>
+  <body class="mb-5">
+    <%= render 'layouts/nav' %>
+    <div class="justify-content-md-center">
+    <%= render 'layouts/flash' %>
     <%= yield %>
+    </div>
+    <%= render 'layouts/js_libs' %>
   </body>
 </html>

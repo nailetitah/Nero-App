@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center ">
+<%= form_for @training do |f| %>
+
+  <% if @training.errors.any? %>
+    <% @training.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger" role="alert"><%= message %></div>
+    <% end %>
+  <% end %>
+ <div class="border rounded shadow px-4 py-2 mt-4">
+  <div class="form-group my-4">
+    <%= f.label "Titre" %><br>
+    <%= f.text_field :title, :class => 'form-control' %>
+  </div>
+  
+  <div class="form-group my-4">
+    <%= f.label "Description" %><br>
+    <%= f.text_area :description, :class => 'form-control' %>
+  </div>
+  
+    <div class="form-row my-4">
+    <div class="col">
+      <%= f.label "Date" %><br>
+      <%= f.date_select :start_date, class: 'form-control' %>
+    </div>
+
+    <div class="col">
+      <%= f.label "Heure" %><br>
+      <%= f.time_select :start_date, :ignore_date => true, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-row my-4">
+    <div class="col">
+      <%= f.label "Durée (en minutes)" %><br>
+      <%= f.text_field :duration, :class => 'form-control' %>
+    </div>
+
+    <div class="col">
+      <%= f.label "Prix" %><br>
+      <%= f.text_field :price, :class => 'form-control' %>
+    </div>
+  </div>
+  
+    <div class="form-group my-4">
+      <%= f.label "Lieu" %><br>
+      <%= f.text_field :location, :class => 'form-control' %>
+    </div>
+
+  <div class="d-none">
+  <%= f.text_field :training_planner_id, :value => current_user.id %>
+  </div>
+
+  <div class="form-group my-4">
+    <%= submit_tag "Valider", :class => 'w-100 btn btn-primary'  %>
+  </div>
+</div>
+<% end %>
+</div>

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+  <a class="navbar-brand" href="/">
+    <%= image_tag "nero-red.png", alt: "Logo Nero", :class => 'logo-img' %>
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <%= link_to "Programme", programme_index_path, :class => 'nav-item nav-link text-dark' %>
+      <%= link_to "Prochaines sessions", trainings_path, :class => 'nav-item nav-link text-dark' %>
+
+<!-- Vues utilisateurs selon statut -->
+          <span class="dropdown">
+            <a class="nav-item nav-link text-dark" href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="far fa-user"></i>
+                <% if user_signed_in? %>
+                  <span class="mx-1"><%= current_user.email %></span>
+                  </a>
+                  <div class="dropdown-menu">
+                  <p><%= link_to "Mon profil", current_user, :class => 'mx-2 text-dark text-decoration-none' %></p>
+                  <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, :class => 'mx-2 text-dark text-decoration-none' %>
+                  </div>
+                  </span>
+                <% else %>
+                  <span class="mx-1">Connexion</span>
+                  </a>
+                  <div class="dropdown-menu">
+                  <p><%= link_to "Créer un compte", new_user_registration_path, :class => 'mx-2 text-dark text-decoration-none' %></p>
+                  <%= link_to "Se connecter", new_user_session_path, :class => 'mx-2 text-dark text-decoration-none' %> 
+                  </div>
+                <% end %>
+              </span>
+
+              <!-- Vue Admin -->
+              <% if isAdmin? %>
+                      <%= link_to "Administrateur", users_path, :class => 'btn btn-outline-primary' %>
+              <% end %>
+
+    </div>
+  </div>
+</div>
+</nav>
