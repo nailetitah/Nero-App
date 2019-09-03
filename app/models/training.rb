@@ -1,6 +1,5 @@
 class Training < ApplicationRecord
-  has_many :attendances
-  has_many :users, through: :attendances
+  has_many :users
 
   #Validations
   validate :start_date_cannot_be_in_the_past

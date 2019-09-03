@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   # Liaisons
-  has_many :attendances
+  belongs_to :training
   
   # Emails
   # after_create :welcome_send
