@@ -29,13 +29,13 @@ class TrainingsController < ApplicationController
 
   def update
     @training = Training.find(params[:id])
-    if @training.update(training_params)
-      flash[:success] = "L'événément a été modifié."
-      redirect_to @training
-    else
-      render 'edit'
-    end
+    if @training.save
+    @user = current_user
+    @user.update(training_id: @training.id)
+    flash[:success] = "Vous êtes inscrits au training n° #{@training.id}"
+    redirect_to trainings_path
   end
+ end
 
   def destroy
     @training = Training.find(params[:id])

@@ -1,5 +1,5 @@
 <div class="container pt-4">
-  <div class="text-center mt-4">
+  <div class="text-center">
     <h1>Prochaines sessions</h1>
     <h5>Inscrivez-vous en 3 clics !</h5>
     <!-- Ajout de la fonction if admin pour add training -->
@@ -34,9 +34,8 @@
         </div>
         <div class="card-footer text-muted">Paris
         </div>
-        <a href="#" class="card-btn btn btn-block btn-primary rounded-bottom">
-               Je m'inscris
-              </a>
+        <%= link_to "Je m'inscris : #{training.id}", training_path(training), method: :patch, :class => 'card-btn btn btn-block btn-primary rounded-bottom' %>
+               
       </div><% end %>
     </div><% end %>
 
