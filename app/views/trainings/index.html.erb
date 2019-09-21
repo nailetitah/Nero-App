@@ -9,7 +9,7 @@
   <div class="row mt-4 mb-4"><% @trainings.each do |training| %>
     <div class="col-sm-4 my-4 px-4"><%= link_to training_path(training.id), :class => 'text-dark text-decoration-none', :action => 'go' do %>
       <div class="card text-center shadow">
-        <div class="card-header"><%= training.start_date.strftime("%d " "%b") %>
+        <div class="card-header"><%= "Session n°#{training.id} :"%> <%= training.start_date.strftime("%d " "%b") %>
         </div>
         <div class="card-body">
 
@@ -34,7 +34,12 @@
         </div>
         <div class="card-footer text-muted">Paris
         </div>
-        <%= link_to "Je m'inscris : #{training.id}", training_path(training), method: :patch, :class => 'card-btn btn btn-block btn-primary rounded-bottom' %>
+
+         <%= link_to "Je m'inscris", training_path(training),
+        method: :get, 
+        #method: :patch, 
+        :class => 'card-btn btn btn-block btn-primary rounded-bottom' %>
+       
                
       </div><% end %>
     </div><% end %>

@@ -1,16 +1,51 @@
 <div class="container">
-  <div class="row justify-content-center">
-	<div class="text-center my-5">
-		<h1><%= @training.title %></h1>
-		<h6><%= @training.start_date.strftime("%d.%m.%Y") %> | <%= @training.location %> | <%= @training.price %> €</h6>
+  <div class="row my-4">
+    <div class="form-signin my-4 rounded shadow text-center">
+		<h1>Session n°<%= @training.id %></h1>
+		<h5><%= @training.start_date.strftime("%d.%m.%Y") %> | <%= @training.location %> | <%= @training.price %> €</h5>
 		<p><%= @training.description %></p>
 		<hr>
 		<div class="my-4">
 		<p>Cet événement termine le <%= @training.end_date.strftime("%d.%m.%Y à %Hh%M") %></p>
 		</div>
 		<div class="my-4">
-		<p><%= link_to "Voir tous les événements", root_path %></p>
+		<% if user_signed_in? %>
+		<% if current_user.training_id != 1 %>
+
+        <p>Vous êtes inscrit à la session n°<%= current_user.training_id %>.</p>
+        <%= link_to "Changer pour la session n°#{@training.id} ?", training_path(@training), method: :patch, 
+        :class => 'card-btn btn btn-block btn-primary rounded-bottom' %> 
+
+        <% end %>
+
+        <% else %>
+
+        <%= link_to "Je m'inscris : #{@training.id}", training_path(@training), method: :patch, 
+        :class => 'card-btn btn btn-block btn-primary rounded-bottom' %> 
+
+        <% end %>
+     
 		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">S'inscrire</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<!-- Render (voir modal d'inscription sur autre projet) -->
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		</div>
+		<!-- Fin Modal -->
+
 	</div>
   </div>
 </div>

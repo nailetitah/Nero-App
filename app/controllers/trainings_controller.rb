@@ -1,5 +1,6 @@
 class TrainingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_training, only: [:show, :edit, :update, :destroy]
 
   def index
     @trainings = Training.all.order("start_date ASC")
@@ -24,21 +25,15 @@ class TrainingsController < ApplicationController
   end
 
   def edit
-    @training = Training.find(params[:id])
   end
 
   def update
-    @training = Training.find(params[:id])
-    if @training.save
-    @user = current_user
-    @user.update(training_id: @training.id)
-    flash[:success] = "Vous êtes inscrits au training n° #{@training.id}"
-    redirect_to trainings_path
-  end
+    session[:training_id] = @training.id
+    flash[:success] = "Félicitations ! Vous êtes inscrit à la session n° #{session[:training_id]}." 
+    redirect_to training_path(@training)
  end
 
   def destroy
-    @training = Training.find(params[:id])
     @training.destroy
     flash[:success] = "L'événément a été supprimé."
     redirect_to root_path
@@ -50,7 +45,7 @@ class TrainingsController < ApplicationController
     params.require(:training).permit(:start_date, :duration, :title, :description, :price, :location, :training_planner_id)
   end
 
-  def find_training
+  def set_training
     @training = Training.find(params[:id])
   end
 
